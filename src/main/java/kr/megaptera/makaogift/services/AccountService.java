@@ -1,11 +1,13 @@
 package kr.megaptera.makaogift.services;
 
+import jakarta.transaction.Transactional;
 import kr.megaptera.makaogift.exceptions.AccountNotFound;
 import kr.megaptera.makaogift.models.Account;
 import kr.megaptera.makaogift.repositories.AccountRepository;
 import org.springframework.stereotype.Service;
 
 @Service
+@Transactional
 public class AccountService {
     private final AccountRepository accountRepository;
 
