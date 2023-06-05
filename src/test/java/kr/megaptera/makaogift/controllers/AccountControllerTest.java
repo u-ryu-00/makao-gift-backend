@@ -2,6 +2,7 @@ package kr.megaptera.makaogift.controllers;
 
 import kr.megaptera.makaogift.exceptions.AccountNotFound;
 import kr.megaptera.makaogift.models.Account;
+import kr.megaptera.makaogift.repositories.AccountRepository;
 import kr.megaptera.makaogift.services.AccountService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ class AccountControllerTest {
 
     @MockBean
     private AccountService accountService;
+
+    @MockBean
+    private AccountRepository accountRepository;
 
     @Test
     void account() throws Exception {

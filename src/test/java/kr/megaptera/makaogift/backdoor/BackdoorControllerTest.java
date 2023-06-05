@@ -7,6 +7,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -21,6 +22,12 @@ class BackdoorControllerTest {
     @Test
     void setupDatabase() throws Exception {
         mockMvc.perform(MockMvcRequestBuilders.get("/backdoor/setup-database"))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void deleteProduct() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.get("/backdoor/delete-product"))
                 .andExpect(status().isOk());
     }
 }
