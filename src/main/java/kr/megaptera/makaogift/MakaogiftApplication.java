@@ -46,11 +46,11 @@ public class MakaogiftApplication {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        int saltLength = 16; // or any other desired value
-        int hashLength = 32; // or any other desired value
-        int parallelism = 2; // or any other desired value
-        int memory = 65536; // or any other desired value
-        int iterations = 10; // or any other desired value
+        int saltLength = 16;
+        int hashLength = 32;
+        int parallelism = 2;
+        int memory = 65536;
+        int iterations = 10;
         return new Argon2PasswordEncoder(saltLength, hashLength, parallelism, memory, iterations);
     }
 }
