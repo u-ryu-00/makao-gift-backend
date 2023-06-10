@@ -9,7 +9,7 @@ import kr.megaptera.makaogift.dtos.ProductDto;
 public class Product {
     @Id
     @GeneratedValue
-    private Long id;
+    private Long productId;
 
     private String title;
 
@@ -24,8 +24,8 @@ public class Product {
     public Product() {
     }
 
-    public Product(Long id, String title, String company, Long price, String description, String imageUrl) {
-        this.id = id;
+    public Product(Long productId, String title, String company, Long price, String description, String imageUrl) {
+        this.productId = productId;
         this.title = title;
         this.company = company;
         this.price = price;
@@ -33,8 +33,8 @@ public class Product {
         this.imageUrl = imageUrl;
     }
 
-    public Long getId() {
-        return id;
+    public Long getProductId() {
+        return productId;
     }
 
     public String getTitle() {
@@ -58,7 +58,7 @@ public class Product {
     }
 
     public ProductDto toDto() {
-        return new ProductDto(id, title, company, price, description, imageUrl);
+        return new ProductDto(productId, title, company, price, description, imageUrl);
     }
 
     public static Product fake() {
