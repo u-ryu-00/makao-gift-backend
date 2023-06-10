@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import kr.megaptera.makaogift.dtos.AccountDto;
+import kr.megaptera.makaogift.exceptions.LackOfAmount;
 
 @Entity
 public class Account {
@@ -38,5 +39,15 @@ public class Account {
 
     public AccountDto toDto() {
         return new AccountDto(userId, amount);
+    }
+
+    public void present(Product product, Integer quantity) {
+        Long totalPrice = product.getPrice() * quantity;
+
+        if (totalPrice > this.amount) {
+            throw new LackOfAmount();
+        }
+
+        this.amount -= product.getPrice() * quantity;
     }
 }

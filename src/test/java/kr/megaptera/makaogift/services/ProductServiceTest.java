@@ -16,14 +16,14 @@ class ProductServiceTest {
     ProductService productService;
 
     @BeforeEach
-    void setUp(){
+    void setUp() {
         productRepository = mock(ProductRepository.class);
 
         productService = new ProductService(productRepository);
     }
 
     @Test
-    void list(){
+    void list() {
         Product product = mock(Product.class);
 
         given(productRepository
