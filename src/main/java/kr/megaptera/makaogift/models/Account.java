@@ -14,19 +14,30 @@ public class Account {
 
     private String userId;
 
+    private String name;
+
     private Long amount;
 
     public Account() {
     }
 
-    public Account(Long id, String userId, Long amount) {
+    public Account(Long id, String userId, String name, Long amount) {
         this.id = id;
         this.userId = userId;
+        this.name = name;
         this.amount = amount;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getUserId() {
         return userId;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public Long getAmount() {
@@ -34,11 +45,11 @@ public class Account {
     }
 
     public static Account fake(String userId) {
-        return new Account(1L, userId, 50000L);
+        return new Account(1L, userId, "내이름", 50000L);
     }
 
     public AccountDto toDto() {
-        return new AccountDto(userId, amount);
+        return new AccountDto(userId, name, amount);
     }
 
     public void present(Product product, Integer quantity) {
