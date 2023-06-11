@@ -34,6 +34,7 @@ public class SessionController {
 
         return new LoginResultDto(
                 account.getUserId(),
+                account.getName(),
                 account.getAmount()
         );
     }
