@@ -20,7 +20,7 @@ public class BackdoorController {
     public String setupDatabase() {
         jdbcTemplate.execute("DELETE FROM product");
         jdbcTemplate.execute("DELETE FROM account");
-        jdbcTemplate.execute("DELETE FROM order_History");
+        jdbcTemplate.execute("DELETE FROM ORDER_HISTORY");
 
         jdbcTemplate.execute("" +
                 "INSERT INTO account(id, user_Id, amount)" +
@@ -48,8 +48,8 @@ public class BackdoorController {
         );
 
         jdbcTemplate.execute("" +
-                "INSERT INTO order_History(order_Id, address, message, product_Id, quantity, receiver, total_Price, user_Id, title, company, description, image_Url, created_At, updated_At)" +
-                " VALUES(1, '성동구', '감사합니다', 1, 1, '유정', 2000, 'a111', '[단독각인] 캔디 글레이즈 컬러밤', '입생로랑', '투명하게 녹아 맑게 빛나는 컬러 글로우 밤', 'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20230516143408_834e86474204499b9fb85a2a3911ddfa.jpg', '2023-06-10 13:40:40.044709','2023-06-10 13:40:40.044709')"
+                "INSERT INTO ORDER_HISTORY(order_Id, address, message, product_Id, quantity, receiver, total_Price, user_Id, title, company, description, image_Url, created_At)" +
+                " VALUES(1, '성동구', '감사합니다', 1, 1, '유정', 2000, 'a111', '[단독각인] 캔디 글레이즈 컬러밤', '입생로랑', '투명하게 녹아 맑게 빛나는 컬러 글로우 밤', 'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20230516143408_834e86474204499b9fb85a2a3911ddfa.jpg', '2023-06-10 13:40:40.044709')"
         );
         return "OK";
     }
