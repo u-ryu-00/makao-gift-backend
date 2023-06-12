@@ -4,6 +4,7 @@ import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import kr.megaptera.makaogift.dtos.AccountCreatedDto;
 import kr.megaptera.makaogift.dtos.AccountDto;
 import kr.megaptera.makaogift.exceptions.LackOfAmount;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -24,6 +25,17 @@ public class Account {
     private Long amount;
 
     public Account() {
+    }
+
+    public Account(String name, UserId userId) {
+        this.name = name;
+        this.userId = userId;
+    }
+
+    public Account(UserId userId, String name, Long amount) {
+        this.userId = userId;
+        this.name = name;
+        this.amount = 50000L;
     }
 
     public Account(Long id, UserId userId, String name, Long amount) {
@@ -79,5 +91,9 @@ public class Account {
         }
 
         this.amount -= product.getPrice() * quantity;
+    }
+
+    public AccountCreatedDto toCreatedDto() {
+        return new AccountCreatedDto(id, name, amount, userId.value());
     }
 }
