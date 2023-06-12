@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -79,5 +80,25 @@ class AccountControllerTest {
                         .header("Authorization", "Bearer " + token)
                 )
                 .andExpect(status().isBadRequest());
+    }
+
+    {
+    }
+
+    @Test
+    void register() throws Exception {
+        given(accountService.create(any())).willReturn(Account.fake("a111"));
+
+        mockMvc.perform(MockMvcRequestBuilders.post("/accounts")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("{" +
+                                "\"name\":\"내이름\"," +
+                                "\"userId\":\"a111\"," +
+                                "\"password\":\"Aa1!!!!!\"" +
+                                "}"))
+                .andExpect(status().isCreated())
+                .andExpect(content().string(
+                        containsString("내이름")
+                ));
     }
 }

@@ -1,10 +1,13 @@
 package kr.megaptera.makaogift.services;
 
+import kr.megaptera.makaogift.dtos.AccountDto;
 import kr.megaptera.makaogift.models.Account;
 import kr.megaptera.makaogift.models.UserId;
 import kr.megaptera.makaogift.repositories.AccountRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
@@ -20,6 +23,8 @@ class AccountServiceTest {
 
     AccountRepository accountRepository;
 
+    PasswordEncoder passwordEncoder;
+
     @BeforeEach
     void setUp() {
         accountRepository = mock(AccountRepository.class);
@@ -27,7 +32,31 @@ class AccountServiceTest {
         given(accountRepository.findByUserId(any()))
                 .willReturn(Optional.of(Account.fake("a111")));
 
-        accountService = new AccountService(accountRepository);
+        int saltLength = 16;
+        int hashLength = 32;
+        int parallelism = 4;
+        int memory = 65536;
+        int iterations = 3;
+
+        passwordEncoder = new Argon2PasswordEncoder(
+                saltLength, hashLength, parallelism, memory, iterations);
+
+        accountService = new AccountService(passwordEncoder, accountRepository);
+    }
+
+    @Test
+    void create() {
+        AccountService accountService = new AccountService(
+                passwordEncoder, accountRepository);
+
+        AccountDto accountDto = new AccountDto(
+                "a111", "내이름", 50000L, "Aa1!!!!!", "Aa1!!!!!");
+
+        Account account = accountService.create(accountDto);
+
+        assertThat(account).isNotNull();
+
+        verify(accountRepository).save(account);
     }
 
     @Test
