@@ -30,6 +30,9 @@ public class PresentDto {
 
     private LocalDateTime createdAt;
 
+    public PresentDto() {
+    }
+
     public PresentDto(UserId userId, Long productId, String title, String company, String description, String imageUrl, Integer quantity, String receiver, String address, String message, LocalDateTime createdAt) {
         this.userId = userId;
         this.productId = productId;

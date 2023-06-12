@@ -30,6 +30,9 @@ public class OrderDto {
 
     private LocalDateTime createdAt;
 
+    public OrderDto() {
+    }
+
     public OrderDto(Long orderId, Long productId, String title, String company, String description, String imageUrl, Integer quantity, Long totalPrice, String receiver, String address, String message, LocalDateTime createdAt) {
         this.orderId = orderId;
         this.productId = productId;

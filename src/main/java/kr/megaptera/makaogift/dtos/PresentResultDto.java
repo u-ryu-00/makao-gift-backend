@@ -7,6 +7,9 @@ public class PresentResultDto {
 
     private Integer quantity;
 
+    public PresentResultDto() {
+    }
+
     public PresentResultDto(Long id, Long productId, Integer quantity) {
         this.id = id;
         this.productId = productId;

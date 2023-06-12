@@ -7,6 +7,9 @@ public class LoginRequestDto {
 
     private String password;
 
+    public LoginRequestDto() {
+    }
+
     public LoginRequestDto(String userId, String password) {
         this.userId = userId;
         this.password = password;

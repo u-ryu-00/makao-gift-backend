@@ -1,5 +1,6 @@
 package kr.megaptera.makaogift.models;
 
+import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 
