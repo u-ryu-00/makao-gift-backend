@@ -17,7 +17,7 @@ import java.util.stream.Collectors;
 public class ProductController {
     private final ProductService productService;
 
-    public ProductController(ProductService productService){
+    public ProductController(ProductService productService) {
         this.productService = productService;
     }
 
@@ -35,7 +35,7 @@ public class ProductController {
     @GetMapping("/{id}")
     public ProductDto product(
             @PathVariable("id") Long id
-    ){
+    ) {
         Product product = productService.detail(id);
 
         return product.toDto();

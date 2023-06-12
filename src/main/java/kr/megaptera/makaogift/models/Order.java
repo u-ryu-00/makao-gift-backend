@@ -8,7 +8,6 @@ import jakarta.persistence.Table;
 import kr.megaptera.makaogift.dtos.OrderDto;
 import kr.megaptera.makaogift.dtos.PresentResultDto;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import java.time.LocalDateTime;
 
