@@ -82,9 +82,6 @@ class AccountControllerTest {
                 .andExpect(status().isBadRequest());
     }
 
-    {
-    }
-
     @Test
     void register() throws Exception {
         given(accountService.create(any())).willReturn(Account.fake("a111"));
@@ -92,9 +89,9 @@ class AccountControllerTest {
         mockMvc.perform(MockMvcRequestBuilders.post("/accounts")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content("{" +
+                                "\"id\":\"1\"," +
                                 "\"name\":\"내이름\"," +
-                                "\"userId\":\"a111\"," +
-                                "\"password\":\"Aa1!!!!!\"" +
+                                "\"userId\":\"a111\"" +
                                 "}"))
                 .andExpect(status().isCreated())
                 .andExpect(content().string(
