@@ -2,6 +2,7 @@ package kr.megaptera.makaogift.backdoor;
 
 import jakarta.transaction.Transactional;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -12,8 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class BackdoorController {
     private final JdbcTemplate jdbcTemplate;
 
-    public BackdoorController(JdbcTemplate jdbcTemplate) {
+    private final PasswordEncoder passwordEncoder;
+
+    public BackdoorController(JdbcTemplate jdbcTemplate,
+                              PasswordEncoder passwordEncoder) {
         this.jdbcTemplate = jdbcTemplate;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @GetMapping("setup-database")
@@ -26,11 +31,27 @@ public class BackdoorController {
                 "INSERT INTO account(id, user_Id, amount)" +
                 " VALUES(1, 'a111', 50000)"
         );
-
         jdbcTemplate.execute("" +
                 "INSERT INTO account(id, user_Id, amount)" +
                 " VALUES(2, 'b222', 50000)"
         );
+
+//        jdbcTemplate.update("" +
+//                        "INSERT INTO account(" +
+//                        " id, user_Id, name, amount, encoded_password" +
+//                        ")" +
+//                        " VALUES(1, 'a111', '내이름', 50000, ?)",
+//                passwordEncoder.encode("Aa1!!!!!")
+//        );
+
+
+//        jdbcTemplate.update("" +
+//                        "INSERT INTO account(" +
+//                        " id, user_Id, name, amount, encoded_password" +
+//                        ")" +
+//                        " VALUES(2, 'b222', '네이름', 50000, ?)",
+//                passwordEncoder.encode("Aa1!!!!!")
+//        );
 
         jdbcTemplate.execute("" +
                 "INSERT INTO product(product_Id, company, description, price, title, image_Url)" +
@@ -63,7 +84,7 @@ public class BackdoorController {
 
     @GetMapping("delete-order")
     public String deleteOrder() {
-        jdbcTemplate.execute("DELETE FROM order_History");
+        jdbcTemplate.execute("DELETE FROM ORDER_HISTORY");
 
         return "OK";
     }

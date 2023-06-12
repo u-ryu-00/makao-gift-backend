@@ -6,6 +6,7 @@ import kr.megaptera.makaogift.exceptions.ProductNotFound;
 import kr.megaptera.makaogift.models.Account;
 import kr.megaptera.makaogift.models.Order;
 import kr.megaptera.makaogift.models.Product;
+import kr.megaptera.makaogift.models.UserId;
 import kr.megaptera.makaogift.repositories.AccountRepository;
 import kr.megaptera.makaogift.repositories.OrderRepository;
 import kr.megaptera.makaogift.repositories.ProductRepository;
@@ -26,7 +27,7 @@ public class PresentService {
         this.orderRepository = orderRepository;
     }
 
-    public Order present(String userId, Long productId, String title, String company, String description, String imageUrl, Integer quantity,
+    public Order present(UserId userId, Long productId, String title, String company, String description, String imageUrl, Integer quantity,
                          String receiver, String address, String message, LocalDateTime createdAt) {
         Account account = accountRepository.findByUserId(userId)
                 .orElseThrow(() -> new AccountNotFound(userId));

@@ -2,16 +2,30 @@ package kr.megaptera.makaogift.services;
 
 import kr.megaptera.makaogift.exceptions.LoginFailed;
 import kr.megaptera.makaogift.models.Account;
+import kr.megaptera.makaogift.models.UserId;
+import kr.megaptera.makaogift.repositories.AccountRepository;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class LoginService {
-    public Account login(String userId, String password) {
-        if (!password.equals("Aa1!!!!!")) {
+    private final AccountRepository accountRepository;
+
+    private final PasswordEncoder passwordEncoder;
+
+    public LoginService(AccountRepository accountRepository,
+                        PasswordEncoder passwordEncoder) {
+        this.accountRepository = accountRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    public Account login(UserId userId, String password) {
+        Account account = accountRepository.findByUserId(userId)
+                .orElseThrow(() -> new LoginFailed());
+
+        if (account == null || !account.authenticate(password, passwordEncoder)) {
             throw new LoginFailed();
         }
-
-        Account account = Account.fake(userId);
         return account;
     }
 }

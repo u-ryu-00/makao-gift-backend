@@ -1,10 +1,12 @@
 package kr.megaptera.makaogift.models;
 
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import kr.megaptera.makaogift.dtos.AccountDto;
 import kr.megaptera.makaogift.exceptions.LackOfAmount;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Entity
 public class Account {
@@ -12,7 +14,10 @@ public class Account {
     @GeneratedValue
     private Long id;
 
-    private String userId;
+    @Embedded
+    private UserId userId;
+
+    private String encodedPassword;
 
     private String name;
 
@@ -21,7 +26,7 @@ public class Account {
     public Account() {
     }
 
-    public Account(Long id, String userId, String name, Long amount) {
+    public Account(Long id, UserId userId, String name, Long amount) {
         this.id = id;
         this.userId = userId;
         this.name = name;
@@ -32,7 +37,7 @@ public class Account {
         return id;
     }
 
-    public String getUserId() {
+    public UserId getUserId() {
         return userId;
     }
 
@@ -44,12 +49,26 @@ public class Account {
         return amount;
     }
 
+    public void changePassword(String password,
+                               PasswordEncoder passwordEncoder) {
+        encodedPassword = passwordEncoder.encode(password);
+    }
+
+    public boolean authenticate(String password,
+                                PasswordEncoder passwordEncoder) {
+        return passwordEncoder.matches(password, encodedPassword);
+    }
+
     public static Account fake(String userId) {
-        return new Account(1L, userId, "내이름", 50000L);
+        return new Account(1L, new UserId(userId), "내이름", 50000L);
+    }
+
+    public static Account fake(UserId userId) {
+        return Account.fake(userId.value());
     }
 
     public AccountDto toDto() {
-        return new AccountDto(userId, name, amount);
+        return new AccountDto(userId.value(), name, amount);
     }
 
     public void present(Product product, Integer quantity) {

@@ -1,5 +1,7 @@
 package kr.megaptera.makaogift.dtos;
 
+import kr.megaptera.makaogift.models.UserId;
+
 public class LoginRequestDto {
     private String userId;
 
