@@ -1,5 +1,6 @@
 package kr.megaptera.makaogift.models;
 
+import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -18,7 +19,8 @@ public class Order {
     @GeneratedValue
     private Long orderId;
 
-    private String userId;
+    @Embedded
+    private UserId userId;
 
     private Long productId;
 
@@ -46,7 +48,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(Long orderId, String userId, Long productId, String title, String company, String description, String imageUrl, Integer quantity, Long totalPrice, String receiver, String address, String message, LocalDateTime createdAt) {
+    public Order(Long orderId, UserId userId, Long productId, String title, String company, String description, String imageUrl, Integer quantity, Long totalPrice, String receiver, String address, String message, LocalDateTime createdAt) {
         this.orderId = orderId;
         this.userId = userId;
         this.productId = productId;
@@ -66,7 +68,7 @@ public class Order {
         return orderId;
     }
 
-    public String getUserId() {
+    public UserId getUserId() {
         return userId;
     }
 
@@ -124,6 +126,6 @@ public class Order {
 
     public static Order fake() {
         LocalDateTime createdAt = LocalDateTime.now();
-        return new Order(1L, "a111", 1L, "바디워시", "탬버린즈", "물에 닿는 순간 풍성한 거품으로 변해 피부를 부드럽게 씻어내어 자연의 향으로 감싸줍니다.", "https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20221124180904_d7730ce8710a45a084a62ee6c1f56766.jpg\t", 2, 20000L, "이름", "주소", "메시지", createdAt);
+        return new Order(1L, new UserId("a111"), 1L, "바디워시", "탬버린즈", "물에 닿는 순간 풍성한 거품으로 변해 피부를 부드럽게 씻어내어 자연의 향으로 감싸줍니다.", "https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20221124180904_d7730ce8710a45a084a62ee6c1f56766.jpg\t", 2, 20000L, "이름", "주소", "메시지", createdAt);
     }
 }

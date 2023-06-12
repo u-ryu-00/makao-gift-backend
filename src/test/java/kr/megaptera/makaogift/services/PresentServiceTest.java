@@ -2,6 +2,7 @@ package kr.megaptera.makaogift.services;
 
 import kr.megaptera.makaogift.models.Account;
 import kr.megaptera.makaogift.models.Product;
+import kr.megaptera.makaogift.models.UserId;
 import kr.megaptera.makaogift.repositories.AccountRepository;
 import kr.megaptera.makaogift.repositories.OrderRepository;
 import kr.megaptera.makaogift.repositories.ProductRepository;
@@ -39,7 +40,7 @@ class PresentServiceTest {
 
     @Test
     void present() {
-        String userId = "a111";
+        UserId userId = new UserId("a111");
         Long productId = 1L;
         String title = "[단독각인] 캔디 글레이즈 컬러밤";
         String company = "입생로랑";
@@ -51,7 +52,7 @@ class PresentServiceTest {
         String message = "메시지";
         LocalDateTime createdAt = LocalDateTime.now();
 
-        Account account = new Account(1L, "a111", 50000L);
+        Account account = new Account(1L, new UserId("a111"), "내이름", 50000L);
 
         Product product = new Product(
                 1L,

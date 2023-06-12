@@ -4,13 +4,14 @@ import kr.megaptera.makaogift.dtos.LoginRequestDto;
 import kr.megaptera.makaogift.dtos.LoginResultDto;
 import kr.megaptera.makaogift.exceptions.LoginFailed;
 import kr.megaptera.makaogift.models.Account;
+import kr.megaptera.makaogift.models.UserId;
 import kr.megaptera.makaogift.services.LoginService;
+import kr.megaptera.makaogift.utils.JwtUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,9 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("session")
 public class SessionController {
     private final LoginService loginService;
+    private final JwtUtil jwtUtil;
 
-    public SessionController(LoginService loginService) {
+    public SessionController(LoginService loginService, JwtUtil jwtUtil) {
         this.loginService = loginService;
+        this.jwtUtil = jwtUtil;
     }
 
     @PostMapping
@@ -28,12 +31,16 @@ public class SessionController {
     public LoginResultDto login(
             @RequestBody LoginRequestDto loginRequestDto
     ) {
-        Account account = loginService.login(
-                loginRequestDto.getUserId(),
-                loginRequestDto.getPassword());
+        UserId userId = new UserId(loginRequestDto.getUserId());
+
+        String password = loginRequestDto.getPassword();
+
+        Account account = loginService.login(userId, password);
+
+        String accessToken = jwtUtil.encode(userId);
 
         return new LoginResultDto(
-                account.getUserId(),
+                accessToken,
                 account.getName(),
                 account.getAmount()
         );

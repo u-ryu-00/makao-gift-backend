@@ -2,6 +2,7 @@ package kr.megaptera.makaogift.controllers;
 
 import kr.megaptera.makaogift.exceptions.LoginFailed;
 import kr.megaptera.makaogift.models.Account;
+import kr.megaptera.makaogift.models.UserId;
 import kr.megaptera.makaogift.services.LoginService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,10 +31,13 @@ class SessionControllerTest {
 
     @BeforeEach
     void setUp() {
-        Account account = Account.fake("a111");
+        UserId userId = new UserId("a111");
 
-        given(loginService.login("a111", "Aa1!!!!!")).willReturn(account);
-        given(loginService.login("a111", "xxx")).willThrow(new LoginFailed());
+        given(loginService.login(userId, "Aa1!!!!!"))
+                .willReturn(Account.fake(userId));
+
+        given(loginService.login(userId, "xxx"))
+                .willThrow(new LoginFailed());
     }
 
     @Test

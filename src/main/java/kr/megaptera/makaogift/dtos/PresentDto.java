@@ -1,11 +1,12 @@
 package kr.megaptera.makaogift.dtos;
 
 import jakarta.validation.constraints.NotBlank;
+import kr.megaptera.makaogift.models.UserId;
 
 import java.time.LocalDateTime;
 
 public class PresentDto {
-    private String userId;
+    private UserId userId;
 
     private Long productId;
 
@@ -29,7 +30,7 @@ public class PresentDto {
 
     private LocalDateTime createdAt;
 
-    public PresentDto(String userId, Long productId, String title, String company, String description, String imageUrl, Integer quantity, String receiver, String address, String message, LocalDateTime createdAt) {
+    public PresentDto(UserId userId, Long productId, String title, String company, String description, String imageUrl, Integer quantity, String receiver, String address, String message, LocalDateTime createdAt) {
         this.userId = userId;
         this.productId = productId;
         this.title = title;
@@ -43,7 +44,7 @@ public class PresentDto {
         this.createdAt = createdAt;
     }
 
-    public String getUserId() {
+    public UserId getUserId() {
         return userId;
     }
 
