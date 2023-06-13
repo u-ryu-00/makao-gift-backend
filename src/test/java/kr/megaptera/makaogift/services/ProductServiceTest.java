@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
@@ -31,7 +32,7 @@ class ProductServiceTest {
                 .willReturn(List.of(product));
 
         List<Product> products =
-                productService.list();
+                (List<Product>) productService.list(1);
 
         assertThat(products).hasSize(1);
     }
