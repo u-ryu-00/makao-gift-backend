@@ -26,13 +26,18 @@ public class ProductController {
     public ProductsDto list(
             @RequestParam(required = false, defaultValue = "1") Integer page
     ) {
+
+        System.out.println(page);
+
         List<ProductDto> productDtos =
                 productService.list(page)
                         .stream()
                         .map(product -> product.toDto())
                         .collect(Collectors.toList());
 
-        return new ProductsDto(productDtos);
+        int totalPages = productService.pages();
+
+        return new ProductsDto(productDtos, totalPages);
     }
 
     @GetMapping("/{id}")
