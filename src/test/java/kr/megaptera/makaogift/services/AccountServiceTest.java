@@ -1,6 +1,7 @@
 package kr.megaptera.makaogift.services;
 
 import kr.megaptera.makaogift.dtos.AccountDto;
+import kr.megaptera.makaogift.exceptions.UserIdAlreadyExist;
 import kr.megaptera.makaogift.models.Account;
 import kr.megaptera.makaogift.models.UserId;
 import kr.megaptera.makaogift.repositories.AccountRepository;
@@ -13,7 +14,6 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
@@ -48,6 +48,9 @@ class AccountServiceTest {
     void create() {
         AccountService accountService = new AccountService(
                 passwordEncoder, accountRepository);
+
+        given(accountRepository.findByUserId(any()))
+                .willReturn(Optional.empty());
 
         AccountDto accountDto = new AccountDto(
                 "a111", "내이름", 50000L, "Aa1!!!!!", "Aa1!!!!!");

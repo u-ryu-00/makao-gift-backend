@@ -28,30 +28,13 @@ public class BackdoorController {
         jdbcTemplate.execute("DELETE FROM ORDER_HISTORY");
 
         jdbcTemplate.execute("" +
-                "INSERT INTO account(id, user_Id, amount)" +
-                " VALUES(1, 'a111', 50000)"
+                "INSERT INTO account(id, user_Id, amount, name, encoded_password)" +
+                " VALUES(1, 'a111', 50000, '이름', '$argon2id$v=19$m=65536,t=10,p=2$Qt3xgQ/d9w6EA2e4FYpGCw$qSIAubIKvXKmxDag3jcMWaA+JtadtQnpzOk8ydzta5I')"
         );
         jdbcTemplate.execute("" +
-                "INSERT INTO account(id, user_Id, amount)" +
-                " VALUES(2, 'b222', 50000)"
+                "INSERT INTO account(id, user_Id, amount, name, encoded_password)" +
+                " VALUES(2, 'b222', 50000, '이름', '$argon2id$v=19$m=65536,t=10,p=2$Qt3xgQ/d9w6EA2e4FYpGCw$qSIAubIKvXKmxDag3jcMWaA+JtadtQnpzOk8ydzta5I')"
         );
-
-//        jdbcTemplate.update("" +
-//                        "INSERT INTO account(" +
-//                        " id, user_Id, name, amount, encoded_password" +
-//                        ")" +
-//                        " VALUES(1, 'a111', '내이름', 50000, ?)",
-//                passwordEncoder.encode("Aa1!!!!!")
-//        );
-
-
-//        jdbcTemplate.update("" +
-//                        "INSERT INTO account(" +
-//                        " id, user_Id, name, amount, encoded_password" +
-//                        ")" +
-//                        " VALUES(2, 'b222', '네이름', 50000, ?)",
-//                passwordEncoder.encode("Aa1!!!!!")
-//        );
 
         jdbcTemplate.execute("" +
                 "INSERT INTO product(product_Id, company, description, price, title, image_Url)" +

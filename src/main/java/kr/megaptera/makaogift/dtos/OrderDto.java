@@ -1,8 +1,5 @@
 package kr.megaptera.makaogift.dtos;
 
-import org.springframework.cglib.core.Local;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class OrderDto {
