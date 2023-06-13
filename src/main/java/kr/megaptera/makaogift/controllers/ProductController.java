@@ -26,9 +26,6 @@ public class ProductController {
     public ProductsDto list(
             @RequestParam(required = false, defaultValue = "1") Integer page
     ) {
-
-        System.out.println(page);
-
         List<ProductDto> productDtos =
                 productService.list(page)
                         .stream()

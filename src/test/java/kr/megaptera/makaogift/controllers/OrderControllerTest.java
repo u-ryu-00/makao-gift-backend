@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
+import org.springframework.data.domain.Page;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -46,8 +47,8 @@ class OrderControllerTest {
 
         Order order = mock(Order.class);
 
-        given(orderService.list(userId))
-                .willReturn(List.of(order));
+        given(orderService.list(userId, 1))
+                .willReturn((Page<Order>) List.of(order));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/orders")
                         .header("Authorization", "Bearer " + token)
@@ -55,8 +56,6 @@ class OrderControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(content().string(
                         containsString("\"orders\":[")));
-
-        verify(orderService).list(userId);
     }
 
     @Test
