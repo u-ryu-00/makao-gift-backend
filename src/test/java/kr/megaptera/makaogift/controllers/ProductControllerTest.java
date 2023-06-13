@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -16,6 +17,7 @@ import java.util.List;
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -33,8 +35,8 @@ class ProductControllerTest {
 
     @Test
     void list() throws Exception {
-        given(productService.list())
-                .willReturn(List.of(Product.fake()));
+        given(productService.list(1))
+                .willReturn((Page<Product>) List.of(Product.fake()));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/products"))
                 .andExpect(status().isOk())
@@ -42,6 +44,8 @@ class ProductControllerTest {
                         containsString(
                                 "\"products\":[{\"id\":1,\"title\":\"[단독각인] 캔디 글레이즈 컬러밤"
                         )));
+
+        verify(productService).list(1);
     }
 
     @Test

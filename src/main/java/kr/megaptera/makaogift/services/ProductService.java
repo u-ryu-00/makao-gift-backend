@@ -3,6 +3,10 @@ package kr.megaptera.makaogift.services;
 import jakarta.transaction.Transactional;
 import kr.megaptera.makaogift.models.Product;
 import kr.megaptera.makaogift.repositories.ProductRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,8 +20,9 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public List<Product> list() {
-        return productRepository.findAll();
+    public Page<Product> list(int page) {
+        Pageable pageable = PageRequest.of(page - 1, 8);
+        return productRepository.findAll(pageable);
     }
 
     public Product detail(Long id) {
