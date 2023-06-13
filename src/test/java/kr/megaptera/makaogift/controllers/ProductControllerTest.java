@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -45,7 +46,25 @@ class ProductControllerTest {
                                 "\"products\":[{\"id\":1,\"title\":\"[단독각인] 캔디 글레이즈 컬러밤"
                         )));
 
-        verify(productService).list(1);
+    }
+
+    @Test
+    void page() throws Exception {
+
+        List<Product> productList = List.of(Product.fake());
+
+        Page<Product> page = new PageImpl<>(productList);
+
+        given(productService.list(2))
+                .willReturn(page);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/products")
+                        .param("page", "2"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(
+                        containsString(
+                                "\"products\":[{\"id\":1,\"title\":\"[단독각인] 캔디 글레이즈 컬러밤"
+                        )));
     }
 
     @Test

@@ -15,9 +15,11 @@ import java.util.List;
 @Transactional
 public class ProductService {
     private final ProductRepository productRepository;
+    private Pageable pageable;
 
-    public ProductService(ProductRepository productRepository) {
+    public ProductService(ProductRepository productRepository, Pageable pageable) {
         this.productRepository = productRepository;
+        this.pageable = pageable;
     }
 
     public Page<Product> list(int page) {
@@ -27,5 +29,11 @@ public class ProductService {
 
     public Product detail(Long id) {
         return productRepository.findById(id).get();
+    }
+
+    public int pages() {
+        Page<Product> productPage = productRepository.findAll(pageable);
+
+        return productPage.getTotalPages();
     }
 }

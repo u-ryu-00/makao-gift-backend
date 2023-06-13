@@ -4,6 +4,7 @@ import kr.megaptera.makaogift.models.Product;
 import kr.megaptera.makaogift.repositories.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -15,12 +16,13 @@ import static org.mockito.Mockito.mock;
 class ProductServiceTest {
     ProductRepository productRepository;
     ProductService productService;
+    Pageable pageable;
 
     @BeforeEach
     void setUp() {
         productRepository = mock(ProductRepository.class);
 
-        productService = new ProductService(productRepository);
+        productService = new ProductService(productRepository, pageable);
     }
 
     @Test
