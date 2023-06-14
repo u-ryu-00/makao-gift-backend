@@ -37,7 +37,7 @@ class ProductControllerTest {
     @Test
     void list() throws Exception {
         given(productService.list(1))
-                .willReturn((Page<Product>) List.of(Product.fake()));
+                .willReturn(new PageImpl<>(List.of(Product.fake())));
 
         mockMvc.perform(MockMvcRequestBuilders.get("/products"))
                 .andExpect(status().isOk())

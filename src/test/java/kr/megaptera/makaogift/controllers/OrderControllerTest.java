@@ -45,10 +45,8 @@ class OrderControllerTest {
 
         UserId userId = new UserId("a111");
 
-        Order order = mock(Order.class);
-
         given(orderService.list(userId, 1))
-                .willReturn((Page<Order>) List.of(order));
+                .willReturn(Page.empty());
 
         mockMvc.perform(MockMvcRequestBuilders.get("/orders")
                         .header("Authorization", "Bearer " + token)

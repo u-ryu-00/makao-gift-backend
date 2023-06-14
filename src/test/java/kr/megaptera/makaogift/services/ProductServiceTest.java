@@ -4,6 +4,8 @@ import kr.megaptera.makaogift.models.Product;
 import kr.megaptera.makaogift.repositories.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
@@ -21,6 +23,7 @@ class ProductServiceTest {
     @BeforeEach
     void setUp() {
         productRepository = mock(ProductRepository.class);
+        pageable = PageRequest.of(0, 10);
 
         productService = new ProductService(productRepository, pageable);
     }
@@ -30,11 +33,10 @@ class ProductServiceTest {
         Product product = mock(Product.class);
 
         given(productRepository
-                .findAll())
-                .willReturn(List.of(product));
+                .findAll(any(Pageable.class)))
+                .willReturn(new PageImpl<>(List.of(product)));
 
-        List<Product> products =
-                (List<Product>) productService.list(1);
+        List<Product> products = productService.list(1).getContent();
 
         assertThat(products).hasSize(1);
     }
