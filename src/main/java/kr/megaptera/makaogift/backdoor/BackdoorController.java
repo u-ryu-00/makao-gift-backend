@@ -111,4 +111,58 @@ public class BackdoorController {
 
         return "OK";
     }
+
+    @GetMapping("add-order")
+    public String addOrder() {
+        jdbcTemplate.execute("" +
+                "INSERT INTO ORDER_HISTORY(order_Id, address, message, product_Id, quantity, receiver, total_Price, user_Id, title, company, description, image_Url, created_At)" +
+                " VALUES(2, '성동구', '감사합니다', 1, 1, '유정2', 2000, 'a111', '[단독각인] 캔디 글레이즈 컬러밤', '입생로랑', '투명하게 녹아 맑게 빛나는 컬러 글로우 밤', 'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20230516143408_834e86474204499b9fb85a2a3911ddfa.jpg', '2023-06-10 13:40:40.044709')"
+        );
+
+        jdbcTemplate.execute("" +
+                "INSERT INTO ORDER_HISTORY(order_Id, address, message, product_Id, quantity, receiver, total_Price, user_Id, title, company, description, image_Url, created_At)" +
+                " VALUES(3, '성동구', '감사합니다', 1, 1, '유정3', 2000, 'a111', '[단독각인] 캔디 글레이즈 컬러밤', '입생로랑', '투명하게 녹아 맑게 빛나는 컬러 글로우 밤', 'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20230516143408_834e86474204499b9fb85a2a3911ddfa.jpg', '2023-06-10 13:40:40.044709')"
+        );
+
+        jdbcTemplate.execute("" +
+                "INSERT INTO ORDER_HISTORY(order_Id, address, message, product_Id, quantity, receiver, total_Price, user_Id, title, company, description, image_Url, created_At)" +
+                " VALUES(4, '성동구', '감사합니다', 1, 1, '유정4', 2000, 'a111', '[단독각인] 캔디 글레이즈 컬러밤', '입생로랑', '투명하게 녹아 맑게 빛나는 컬러 글로우 밤', 'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20230516143408_834e86474204499b9fb85a2a3911ddfa.jpg', '2023-06-10 13:40:40.044709')"
+        );
+
+        jdbcTemplate.execute("" +
+                "INSERT INTO ORDER_HISTORY(order_Id, address, message, product_Id, quantity, receiver, total_Price, user_Id, title, company, description, image_Url, created_At)" +
+                " VALUES(5, '성동구', '감사합니다', 1, 1, '유정5', 2000, 'a111', '[단독각인] 캔디 글레이즈 컬러밤', '입생로랑', '투명하게 녹아 맑게 빛나는 컬러 글로우 밤', 'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20230516143408_834e86474204499b9fb85a2a3911ddfa.jpg', '2023-06-10 13:40:40.044709')"
+        );
+
+        jdbcTemplate.execute("" +
+                "INSERT INTO ORDER_HISTORY(order_Id, address, message, product_Id, quantity, receiver, total_Price, user_Id, title, company, description, image_Url, created_At)" +
+                " VALUES(6, '성동구', '감사합니다', 1, 1, '유정6', 2000, 'a111', '[단독각인] 캔디 글레이즈 컬러밤', '입생로랑', '투명하게 녹아 맑게 빛나는 컬러 글로우 밤', 'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20230516143408_834e86474204499b9fb85a2a3911ddfa.jpg', '2023-06-10 13:40:40.044709')"
+        );
+
+        jdbcTemplate.execute("" +
+                "INSERT INTO ORDER_HISTORY(order_Id, address, message, product_Id, quantity, receiver, total_Price, user_Id, title, company, description, image_Url, created_At)" +
+                " VALUES(7, '성동구', '감사합니다', 1, 1, '유정7', 2000, 'a111', '[단독각인] 캔디 글레이즈 컬러밤', '입생로랑', '투명하게 녹아 맑게 빛나는 컬러 글로우 밤', 'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20230516143408_834e86474204499b9fb85a2a3911ddfa.jpg', '2023-06-10 13:40:40.044709')"
+        );
+
+        jdbcTemplate.execute("" +
+                "INSERT INTO ORDER_HISTORY(order_Id, address, message, product_Id, quantity, receiver, total_Price, user_Id, title, company, description, image_Url, created_At)" +
+                " VALUES(8, '성동구', '감사합니다', 1, 1, '유정8', 2000, 'a111', '[단독각인] 캔디 글레이즈 컬러밤', '입생로랑', '투명하게 녹아 맑게 빛나는 컬러 글로우 밤', 'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20230516143408_834e86474204499b9fb85a2a3911ddfa.jpg', '2023-06-10 13:40:40.044709')"
+        );
+
+        jdbcTemplate.execute("" +
+                "INSERT INTO ORDER_HISTORY(order_Id, address, message, product_Id, quantity, receiver, total_Price, user_Id, title, company, description, image_Url, created_At)" +
+                " VALUES(9, '성동구', '감사합니다', 1, 1, '유정9', 2000, 'a111', '[단독각인] 캔디 글레이즈 컬러밤', '입생로랑', '투명하게 녹아 맑게 빛나는 컬러 글로우 밤', 'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20230516143408_834e86474204499b9fb85a2a3911ddfa.jpg', '2023-06-10 13:40:40.044709')"
+        );
+
+        jdbcTemplate.execute("" +
+                "INSERT INTO ORDER_HISTORY(order_Id, address, message, product_Id, quantity, receiver, total_Price, user_Id, title, company, description, image_Url, created_At)" +
+                " VALUES(10, '성동구', '감사합니다', 1, 1, '유정10', 2000, 'a111', '[단독각인] 캔디 글레이즈 컬러밤', '입생로랑', '투명하게 녹아 맑게 빛나는 컬러 글로우 밤', 'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20230516143408_834e86474204499b9fb85a2a3911ddfa.jpg', '2023-06-10 13:40:40.044709')"
+        );
+
+        jdbcTemplate.execute("" +
+                "INSERT INTO ORDER_HISTORY(order_Id, address, message, product_Id, quantity, receiver, total_Price, user_Id, title, company, description, image_Url, created_At)" +
+                " VALUES(11, '성동구', '감사합니다', 1, 1, '유정11', 2000, 'a111', '[단독각인] 캔디 글레이즈 컬러밤', '입생로랑', '투명하게 녹아 맑게 빛나는 컬러 글로우 밤', 'https://img1.kakaocdn.net/thumb/C320x320@2x.fwebp.q82/?fname=https%3A%2F%2Fst.kakaocdn.net%2Fproduct%2Fgift%2Fproduct%2F20230516143408_834e86474204499b9fb85a2a3911ddfa.jpg', '2023-06-10 13:40:40.044709')"
+        );
+        return "OK";
+    }
 }
