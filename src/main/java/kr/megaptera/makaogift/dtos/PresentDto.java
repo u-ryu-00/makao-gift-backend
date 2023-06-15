@@ -6,8 +6,6 @@ import kr.megaptera.makaogift.models.UserId;
 import java.time.LocalDateTime;
 
 public class PresentDto {
-    private UserId userId;
-
     private Long productId;
 
     private String title;
@@ -33,8 +31,7 @@ public class PresentDto {
     public PresentDto() {
     }
 
-    public PresentDto(UserId userId, Long productId, String title, String company, String description, String imageUrl, Integer quantity, String receiver, String address, String message, LocalDateTime createdAt) {
-        this.userId = userId;
+    public PresentDto(Long productId, String title, String company, String description, String imageUrl, Integer quantity, String receiver, String address, String message, LocalDateTime createdAt) {
         this.productId = productId;
         this.title = title;
         this.company = company;
@@ -45,10 +42,6 @@ public class PresentDto {
         this.address = address;
         this.message = message;
         this.createdAt = createdAt;
-    }
-
-    public UserId getUserId() {
-        return userId;
     }
 
     public Long getProductId() {
