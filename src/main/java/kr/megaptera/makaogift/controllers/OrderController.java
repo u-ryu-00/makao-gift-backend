@@ -52,11 +52,11 @@ public class OrderController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PresentResultDto present(
+            @RequestAttribute("userId") UserId userId,
             @Valid @RequestBody PresentDto presentDto
     ) {
         Order order = presentService.present(
-                presentDto.getUserId(),
-                presentDto.getProductId(),
+                userId, presentDto.getProductId(),
                 presentDto.getTitle(),
                 presentDto.getCompany(),
                 presentDto.getDescription(),
